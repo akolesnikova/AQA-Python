@@ -15,4 +15,4 @@ class TestFibonacci(TestCase):
 
     def test_NotExpectedResult(self):
         n = 5
-        self.assertNotEqual(1,  (n - 1) + (n - 2))
+        self.assertNotEqual(1,  (n - 1) + (n - 2))   
