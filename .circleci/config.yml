@@ -7,11 +7,10 @@ jobs:
     steps:
      - checkout
       - run:
-          name: install dependencies
+          name: run tests
           command: |
-           python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            pytest
       - store_artifacts:
           path: test_reports
           destination: test_reports
