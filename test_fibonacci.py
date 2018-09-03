@@ -13,7 +13,7 @@ def test_expected_result():
 
 def test_condition_for_negative():
 
-        assert fibonacci(-1) == 1
+        assert fibonacci(-1) == -1
 
 
 def test_not_expected_result():
