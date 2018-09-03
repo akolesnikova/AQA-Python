@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.6.6-stretch-browsers
-    working_directory: ~/AQA_Python
+    working_directory: ~/AQA-Python
     steps:
      - checkout
       - run:
@@ -19,5 +19,4 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            py.test -vv fibinacci_tests.py
-          
+            py.test -vv Function/test_fibinacci.py
