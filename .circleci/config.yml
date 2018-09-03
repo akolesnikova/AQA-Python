@@ -5,7 +5,7 @@ jobs:
       - image: circleci/python:3.6.6-stretch-node-browsers
     working_directory: ~/AQA-Python
     steps:
-     - checkout
+      - checkout
       - run:
           name: install dependencies
           command:
@@ -15,7 +15,7 @@ jobs:
       - store_artifacts:
           path: test_reports
           destination: test_reports
-       - run:
+      - run:
           name: run tests
           command: |
             . venv/scripts/activate
