@@ -5,18 +5,22 @@ jobs:
       - image: circleci/python:3.6.6-stretch-node-browsers
     working_directory: ~/AQA-Python
     steps:
-     - checkout
+      - checkout
       - run:
           name: install dependencies
+<<<<<<< HEAD
           command: 
+=======
+          command: |
+>>>>>>> ffcbc42d5dfc8ae25b73cf479cb0789f00379e0f
             python3 -m venv venv
-            . venv/scripts/activate
+            . venv/bin/activate
             pip install -r requirements.txt
       - store_artifacts:
           path: test_reports
           destination: test_reports
-       - run:
+      - run:
           name: run tests
           command: |
-            . venv/scripts/activate
+            . venv/bin/activate
             py.test -vv test_fibonacci.py
