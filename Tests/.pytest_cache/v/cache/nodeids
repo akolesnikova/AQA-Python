@@ -1,6 +1,0 @@
-[
-  "fibonacci_tests.py::TestFibonacci::test_ConditionForN",
-  "fibonacci_tests.py::TestFibonacci::test_NotExpectedResult",
-  "fibonacci_tests.py::TestFibonacci::test_expectedResult",
-  "fibonacci_tests.py::TestFibonacci::test_message"
-]

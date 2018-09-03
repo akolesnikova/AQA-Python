@@ -3,14 +3,21 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.6.6-stretch-browsers
-    working_directory: ~/aqapython
+    working_directory: ~/AQA_Python
     steps:
      - checkout
       - run:
-          name: run tests
-          command: |
+          name: install dependencies
+          command:
+            python3 -m venv venv
             . venv/bin/activate
-            pytest
+            pip install -r requirements.txt
       - store_artifacts:
           path: test_reports
           destination: test_reports
+       - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            py.test -vv fibinacci_tests.py
+          
