@@ -1,0 +1,13 @@
+{
+    "fields": {
+       "project":
+       {
+          "key": ""
+       },
+       "summary": "qweananananananananananananananananananananananananananananananananananananananananananananananananananananananananananana",
+       "description": "It was created by Anastasiia",
+       "issuetype": {
+          "name": "Bug"
+       }
+   }
+}

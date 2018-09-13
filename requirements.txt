@@ -1,1 +1,5 @@
 pytest==3.7.4
+requests==2.19.1
+vcrpy==1.13.0
+pytest_rerunfailures==4.1
+pytest-xdist==1.23.0

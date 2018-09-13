@@ -1,0 +1,13 @@
+{
+    "fields": {
+       "project":
+       {
+          "key": "AQAPYTHON"
+       },
+       "summary": "Anastasiya created",
+       "description": "It was created by Anastasiia",
+       "issuetype": {
+          "name": "Bug"
+       }
+   }
+}
