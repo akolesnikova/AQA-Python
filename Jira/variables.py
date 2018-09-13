@@ -1,8 +1,3 @@
-import time
-
-import pytest
-import requests
-
 user = 'webinar5'
 password = 'webinar5'
 api_url = "http://jira.hillel.it:8080/"
