@@ -1,7 +1,6 @@
 from Jira.variables import *
 from Jira.json_obj import Json
 import pytest
-from threading import Thread
 import logging
 import requests
 
