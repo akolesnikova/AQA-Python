@@ -37,9 +37,6 @@ def test_login_to_jira(login, passwd, res):
 def test_create_issue(file_name, res):
     assert res == requests.request("POST", jira_url + 'issue/', data=Json(file_name).read_json(),
                                    headers=jira_headers).status_code
-    for i in range(10):
-        t = Thread(target=test_create_issue(file_name, res))
-        t.start()
 
 
 @pytest.mark.parametrize("jql,res", [

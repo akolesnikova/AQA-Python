@@ -1,12 +1,14 @@
 {
-    "fields": {
-       "project":
-       {
-          "key": "AQAPYTHON"
-       },
-       "summary": "Anastasiia updated",
-       "description": "It was updated by Anastasiia",
-       "issuetype": {
-          "name": "Task"
-       }
-   }
+  "fields": {
+    "project": {
+      "key": "AQAPYTHON"
+    },
+    "summary": "Anastasiia updated",
+    "description": "It was updated by Anastasiia",
+    "issuetype": {
+      "name": "Task"
+    }
+  }
+}
+
+
