@@ -2,9 +2,8 @@ from Jira.variables import *
 from Jira.json_obj import Json
 import pytest
 from threading import Thread
-import threading
 import logging
-
+import requests
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s (%(threadName)-2s) %(message)s',
@@ -21,12 +20,13 @@ def test_with_myself():
 
 @pytest.mark.flaky(reruns=5)
 @pytest.mark.parametrize("login,passwd,res", [
+    ("webinar5", "webinar5", 200),
     ("Nastya", "Nastya", 401),
-    ("Medennikova", "Medennikova", 401),
-    ("webinar5", "webinar5", 200)
+    ("Medennikova", "Medennikova", 401)
+
 ])
 def test_login_to_jira(login, passwd, res):
-    assert res == requests.request("GET", api_url, auth=(login, passwd)).status_code
+   assert res == requests.request("GET", api_url, auth=(login, passwd)).status_code
 
 
 @pytest.mark.parametrize("file_name,res", [
@@ -48,7 +48,8 @@ def test_create_issue(file_name, res):
     ('***/NastyaProject', 404)
 ])
 def test_search_issue(jql, res):
-    assert res == requests.get(jira_url + jql, auth=(user, password),  headers=jira_headers).status_code
+    #temp = requests.get(jira_url + jql, auth=(user, password), headers=jira_headers).json()
+    assert res == requests.get(jira_url + jql, auth=(user, password), headers=jira_headers).status_code
 
 
 @pytest.mark.parametrize("file_name,issue_id,res", [
@@ -59,17 +60,3 @@ def test_search_issue(jql, res):
 def test_update_issue(file_name, issue_id, res):
     assert res == requests.request("PUT", jira_url + 'issue/' + issue_id, data=Json(file_name).read_json(),
                                    headers=jira_headers).status_code
-
-
-condition = threading.Condition()
-c1 = threading.Thread(name='c1', target=test_create_issue, args=(condition,))
-c2 = threading.Thread(name='c2', target=test_search_issue, args=(condition,))
-p = threading.Thread(name='p', target=test_update_issue, args=(condition,))
-
-
-c1.start()
-time.sleep(2)
-c2.start()
-time.sleep(2)
-p.start()
-
