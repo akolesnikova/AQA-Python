@@ -1,18 +1,12 @@
 
-from selenium import webdriver
 import pytest
-import os, sys, platform
-
-
-os_name = platform.system().lower()
-root_dir = sys.path[0]
-extension = ".exe" if "win" in os_name else ""
-path_to_driver = os.path.join(root_dir, "driver", "chromedriver" + extension)
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture(scope='class')
 def driver_setup(request):
-    web_driver = webdriver.Chrome(executable_path=path_to_driver)
+    web_driver = webdriver.Chrome(ChromeDriverManager().install())
     request.cls.driver = web_driver
     yield
     web_driver.close()
