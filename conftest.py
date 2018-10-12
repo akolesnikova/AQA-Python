@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture(scope='class')
 def driver_setup(request):
-    web_driver = webdriver.Chrome(executable_path="../driver/chromedriver.exe")
+    web_driver = webdriver.Chrome(executable_path="./driver/chromedriver.exe")
     request.cls.driver = web_driver
     yield
     web_driver.close()
