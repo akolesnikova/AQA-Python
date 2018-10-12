@@ -6,7 +6,6 @@ from PageObject.Search_issue_page import SearchIssuePage
 import pytest
 
 
-
 @pytest.mark.usefixtures('driver_setup')
 class TestJira:
 
