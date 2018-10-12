@@ -19,4 +19,5 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path $PATH:"driver/chromedriver"
+            chmod 755 driver/chromedriver
+            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path driver/chromedriver
