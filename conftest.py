@@ -12,7 +12,7 @@ path_to_driver = os.path.join(root_dir, "driver", "chromedriver" + extension)
 
 @pytest.fixture(scope='class')
 def driver_setup(request):
-    web_driver = webdriver.Chrome(executable_path="../driver/chromedriver")
+    web_driver = webdriver.Chrome(executable_path=path_to_driver)
     request.cls.driver = web_driver
     yield
     web_driver.close()
