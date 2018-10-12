@@ -19,4 +19,5 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
+            chmod 755 ../drivers/chromedriver.exe
             py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile
