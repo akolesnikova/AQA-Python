@@ -20,4 +20,4 @@ jobs:
           command: |
             . venv/bin/activate
             chmod 755 ../drivers/chromedriver.exe
-            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile
+            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path ../drivers/chromedriver.exe
