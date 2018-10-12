@@ -3,6 +3,7 @@ from PageObject.LoginPage import LoginPage
 from PageObject.CreateIssue import CreateIssue
 from PageObject.Update_issue import UpdateIssue
 from PageObject.Search_issue_page import SearchIssuePage
+import pytest
 
 
 @pytest.mark.usefixtures('driver_setup')

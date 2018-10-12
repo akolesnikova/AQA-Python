@@ -1,3 +1,4 @@
 .pytest_cache/
 Jira/.pytest_cache/
 Jira/__pycache__/
+driver/.

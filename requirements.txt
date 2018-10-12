@@ -3,3 +3,6 @@ requests==2.19.1
 vcrpy==1.13.0
 pytest_rerunfailures==4.1
 pytest-xdist==1.23.0
+selenium==3.14.1
+pytest-selenium==1.13.0
+jira

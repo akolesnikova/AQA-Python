@@ -1,9 +1,9 @@
-from Jira.variables import *
+from variables import *
 
 
 @pytest.fixture
 def rest():
-    response = requests.get(api_url)
+    response = requests.get(ui_url)
     status = response.status_code
     response.json()
     if status == 200:
