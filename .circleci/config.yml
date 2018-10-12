@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.6.6-stretch-node-browsers
+      - image: selenium/standalone-chrome:latest
     working_directory: ~/AQA-Python
     steps:
       - checkout
