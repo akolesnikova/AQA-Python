@@ -1,4 +1,5 @@
 from variables import *
+import allure
 from PageObject.LoginPage import LoginPage
 from PageObject.CreateIssue import CreateIssue
 from PageObject.Update_issue import UpdateIssue
@@ -10,6 +11,7 @@ import pytest
 @pytest.mark.usefixtures('driver_setup')
 class TestJira:
 
+    @allure.title('Test-Login-to-Jira')
     @pytest.mark.parametrize("login,passwd,res", [
         ("web", "web", "please try again"),
         ("Nastya", "Nastya", "please try again"),
@@ -26,8 +28,7 @@ class TestJira:
         assert res in login_page.wait_for_result(res)
 
 
-
-
+    @allure.title('Test-Create_issue')
     @pytest.mark.parametrize("summary,description,res", [
         ('my_summary', 'good description', "my_summary"),
         ('', 'good description', 'You must specify a summary of the issue.'),
@@ -46,6 +47,8 @@ class TestJira:
         create_issue_page.wait_for_result(res)
         assert res in create_issue_page.wait_for_result(res)
 
+
+    @allure.title('Test-Update_issue')
     @pytest.mark.parametrize("summary,priority,assignee,issue_id,res", [
         ('Very good Summary', '', '', 'WEBINAR-1052', 'WEBINAR-1052 has been updated.'),
         ('Very good Summary', 'High', '', 'WEBINAR-1052', 'WEBINAR-1052 has been updated.'),
@@ -61,6 +64,7 @@ class TestJira:
         update_issue_page.press_updatebtn()
         assert res in update_issue_page.wait_for_result(res)
 
+    @allure.title('Test-Search_issue')
     @pytest.mark.parametrize("jql,count", [
         ('assignee%20%3D%20webinar5%20AND%20project%20%3D%20AQAPython', 8),
         ('assignee%20%3D%20a.maerskaya%20AND%20project%20%3D%20Sokolova', 1),
@@ -71,6 +75,7 @@ class TestJira:
         search_issue = SearchIssuePage(self.driver)
         assert count == search_issue.get_count_of_issues()
 
+    @allure.title('Test-Not-found_issue')
     @pytest.mark.xfail
     @pytest.mark.parametrize("jql,count", [
         ('assignee%20%3D%20a.maerskaya%20AND%20project%20%3D%20Webinar', 0),
@@ -82,22 +87,6 @@ class TestJira:
         search_issue = SearchIssuePage(self.driver)
         assert count == search_issue.get_count_of_issues()
 
-
-
-    """def test_delete_issue(self):
-            requests.request('GET', api_search_issue, auth=(user, password), headers=jira_headers)
-            return
-
-    def test_delete_issue():
-        x = requests.get(api_search_issue, auth=(user, password), headers=jira_headers).json()
-
-    x = json.dumps(x)
-    loaded_r = json.loads(x)
-    print(loaded_r['self'])  # Output 3.5
-    type(x)  # Output str
-    type(loaded_r)  # Output dict
-    d2 = json.loads(s1)
-    print(d2['id'])"""
 
 
 
