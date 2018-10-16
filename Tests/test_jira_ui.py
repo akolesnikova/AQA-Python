@@ -3,7 +3,7 @@ from PageObject.LoginPage import LoginPage
 from PageObject.CreateIssue import CreateIssue
 from PageObject.Update_issue import UpdateIssue
 from PageObject.Search_issue_page import SearchIssuePage
-from selenium.common.exceptions import TimeoutException
+
 import pytest
 
 
@@ -34,6 +34,7 @@ class TestJira:
         (long_summary, 'good description', "summary: Summary must be less than 255 characters."),
     ])
     def test_ui_create_issue(self, summary, description, res):
+
         self.driver.get(ui_url + 'secure/CreateIssue!default.jspa?' + 'os_username=webinar5&os_password=webinar5')
 
         create_issue_page = CreateIssue(self.driver)
