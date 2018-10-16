@@ -3,6 +3,7 @@ from PageObject.LoginPage import LoginPage
 from PageObject.CreateIssue import CreateIssue
 from PageObject.Update_issue import UpdateIssue
 from PageObject.Search_issue_page import SearchIssuePage
+from selenium.common.exceptions import TimeoutException
 import pytest
 
 
@@ -24,12 +25,17 @@ class TestJira:
         login_page.press_loginbtn()
         assert res in login_page.wait_for_result(res)
 
+
+
+
     @pytest.mark.parametrize("summary,description,res", [
+        ('my_summary', 'good description', "my_summary"),
         ('', 'good description', 'You must specify a summary of the issue.'),
         (long_summary, 'good description', "summary: Summary must be less than 255 characters."),
     ])
     def test_ui_create_issue(self, summary, description, res):
         self.driver.get(ui_url + 'secure/CreateIssue!default.jspa?' + 'os_username=webinar5&os_password=webinar5')
+
         create_issue_page = CreateIssue(self.driver)
         create_issue_page.click_next_btn()
         create_issue_page.fill_summary(summary)
