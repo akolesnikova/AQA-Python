@@ -40,7 +40,7 @@ def test_with_myself():
 
 ])
 def test_login_to_jira(login, passwd, res):
-   assert res == requests.request("GET", api_url, auth=(login, passwd)).status_code
+   assert res == requests.request("GET", jira_url, auth=(login, passwd)).status_code
 
 
 @pytest.mark.parametrize("file_name,res", [

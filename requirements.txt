@@ -7,4 +7,5 @@ selenium==3.14.1
 pytest-selenium==1.13.0
 jira
 webdriver-manager==1.7
-allure-pytest
+allure_pytest==2.5.2
+allure_python_commons==2.5.2

@@ -1,4 +1,5 @@
-
+import allure
+from allure_pytest import *
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -11,6 +12,10 @@ def driver_setup(request):
     yield
     web_driver.close()
 
+
+""""@pytest.fixture
+def attach_file(png_file):
+    allure.attach.file(png_file, attachment_type=pytest.alllure.attachment_type.PNG)"""
 
 
 """   #teardown(request)
