@@ -20,5 +20,5 @@ jobs:
           command: |
             . venv/bin/activate
             chmod +x driver/chromedriver
-            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path driver/chromedriver --alluredir=Tests/test_results
-            --allure generate Tests/test_result
+            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path driver/chromedriver --alluredir=Tests/test_reports
+            --allure generate Tests/test_reports

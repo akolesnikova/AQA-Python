@@ -1,6 +1,5 @@
 from variables import *
 import allure
-from allure_commons.types import AttachmentType
 from PageObject.LoginPage import LoginPage
 from PageObject.CreateIssue import CreateIssue
 from PageObject.Update_issue import UpdateIssue
@@ -28,6 +27,7 @@ class TestJira:
         login_page.fill_passwd(passwd)
         login_page.press_loginbtn()
         assert res in login_page.wait_for_result(res)
+
 
 
     @allure.title('UI-Test-Create_issue')
@@ -77,7 +77,9 @@ class TestJira:
         search_issue = SearchIssuePage(self.driver)
         assert count == search_issue.get_count_of_issues()
 
+
     @allure.title('UI-Test-Not-found_issue')
+    @pytest.mark.xfail
     @pytest.mark.parametrize("jql,count", [
         ('assignee%20%3D%20a.maerskaya%20AND%20project%20%3D%20Webinar', 0),
 
@@ -86,7 +88,6 @@ class TestJira:
         self.driver.get(ui_url + '?' + 'os_username=webinar5&os_password=webinar5')
         self.driver.get(ui_url + 'issues/?jql=' + jql)
         search_issue = SearchIssuePage(self.driver)
-        allure.attach('screenshot', self.driver.get_screenshot_as_png(), attachment_type=AttachmentType.PNG)
         assert count == search_issue.get_count_of_issues()
 
 

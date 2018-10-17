@@ -2,3 +2,4 @@
 Jira/.pytest_cache/
 Jira/__pycache__/
 driver/.
+Tests/test_reports
