@@ -23,6 +23,7 @@ class TestJira:
         self.driver.get(ui_url)
 
         login_page = LoginPage(self.driver)
+
         login_page.fill_login(login)
         login_page.fill_passwd(passwd)
         login_page.press_loginbtn()
