@@ -69,7 +69,7 @@ class TestJira:
 
     @allure.title('UI-Test-Search_issue')
     @pytest.mark.parametrize("jql,count", [
-        ('assignee%20%3D%20webinar5%20AND%20project%20%3D%20AQAPython', 99),
+        ('assignee%20%3D%20webinar5%20AND%20project%20%3D%20AQAPython', 8),
         ('assignee%20%3D%20a.maerskaya%20AND%20project%20%3D%20Sokolova', 1),
         ])
     def test_search_issue(self, jql, count):
