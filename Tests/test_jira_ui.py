@@ -80,7 +80,7 @@ class TestJira:
 
 
     @allure.title('UI-Test-Not-found_issue')
-    @pytest.mark.flaky
+    @pytest.mark.xfail
     @pytest.mark.parametrize("jql,count", [
         ('assignee%20%3D%20a.maerskaya%20AND%20project%20%3D%20Webinar', 0),
 
