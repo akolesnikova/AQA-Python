@@ -4,6 +4,8 @@ from allure_pytest import *
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+import requests
+from variables import *
 
 
 @pytest.fixture(scope='function')
@@ -21,6 +23,13 @@ def driver_setup(request):
         except:
             pass
     web_driver.close()
+    x = requests.request("GET", api_search_issue, auth=(user, password), headers=jira_headers).json()
+    y = x.get('issues')
+    for f in y:
+        issue_id = (f.get('id'))
+        requests.request('DELETE', 'http://jira.hillel.it:8080/rest/api/2/issue/' + issue_id, auth=(user, password),
+                         headers=jira_headers)
+        print('Issues deleted')
 
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)

@@ -5,8 +5,11 @@ from PageObject.CreateIssue import CreateIssue
 from PageObject.Update_issue import UpdateIssue
 from PageObject.Search_issue_page import SearchIssuePage
 import conftest
+import requests
 
 import pytest
+
+
 
 
 @pytest.mark.usefixtures('driver_setup')
@@ -90,6 +93,9 @@ class TestJira:
         self.driver.get(ui_url + 'issues/?jql=' + jql)
         search_issue = SearchIssuePage(self.driver)
         assert count == search_issue.get_count_of_issues()
+
+
+
 
 
 
