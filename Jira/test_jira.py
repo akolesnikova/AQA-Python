@@ -1,12 +1,27 @@
-from Jira.variables import *
+from variables import *
 from Jira.json_obj import Json
 import pytest
 import logging
 import requests
+import json
+from jira.client import JIRA
+from jira.exceptions import JIRAError
+
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s (%(threadName)-2s) %(message)s',
                     )
+
+
+@pytest.fixture
+def client(request):
+    test_client = app.test_client()
+
+    def teardown():
+        pass  # databases and resourses have to be freed at the end. But so far we don't have anything
+
+    request.addfinalizer(teardown)
+    return test_client
 
 
 @pytest.mark.xfail
@@ -25,7 +40,7 @@ def test_with_myself():
 
 ])
 def test_login_to_jira(login, passwd, res):
-   assert res == requests.request("GET", api_url, auth=(login, passwd)).status_code
+   assert res == requests.request("GET", jira_url, auth=(login, passwd)).status_code
 
 
 @pytest.mark.parametrize("file_name,res", [
@@ -56,3 +71,8 @@ def test_search_issue(jql, res):
 def test_update_issue(file_name, issue_id, res):
     assert res == requests.request("PUT", jira_url + 'issue/' + issue_id, data=Json(file_name).read_json(),
                                    headers=jira_headers).status_code
+
+
+
+
+

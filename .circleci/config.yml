@@ -12,11 +12,23 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-      - store_artifacts:
-          path: test_reports
-          destination: test_reports
+            curl -o allure-2.7.0.zip -Ls https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.zip
+            unzip allure-2.7.0.zip
+            export PATH=$PATH:$(pwd)/allure-2.7.0/bin/
+            echo "export PATH=$PATH:$(pwd)/allure-2.7.0/bin/" >> $BASH_ENV
+            allure --version
       - run:
           name: run tests
           command: |
             . venv/bin/activate
-            py.test -vv Jira/test_jira.py -n 2 --dist=loadfile
+            chmod +x driver/chromedriver
+            py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path driver/chromedriver --alluredir=Tests/test_reports
+      - run:
+          name: generate report
+          command: |
+            ./allure-2.7.0/bin/allure generate --clean Tests/test_reports
+          when: always
+      - store_artifacts:
+          path: allure-report
+          destination: allure-report
+
