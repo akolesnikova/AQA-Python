@@ -17,6 +17,9 @@ jobs:
             export PATH=$PATH:$(pwd)/allure-2.7.0/bin/
             echo "export PATH=$PATH:$(pwd)/allure-2.7.0/bin/" >> $BASH_ENV
             allure --version
+      - store_artifacts:
+          path: allure-report
+          destination: allure-report
       - run:
           name: run tests
           command: |
@@ -24,7 +27,5 @@ jobs:
             chmod +x driver/chromedriver
             py.test -vv Tests/test_jira_ui.py -n 2 --dist=loadfile --driver Chrome --driver-path driver/chromedriver --alluredir=Tests/test_reports
             ./allure-2.7.0/bin/allure generate --clean Tests/test_reports
-      - store_artifacts:
-          path: allure-report
-          destination: allure-report
+
 
